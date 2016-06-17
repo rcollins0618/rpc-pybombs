@@ -1,0 +1,30 @@
+ vim:ft=yaml:
+# Prefix recipe:
+# X310, custom (radio-redo) UHD+GNU Radio
+
+inherit: prefix
+
+config:
+    categories:
+        hardware:
+            forcebuild: True
+        common:
+            forcebuild: True
+    packages:
+        uhd:
+            forceinstalled: True
+            forcebuild: True
+            gitbranch: rfnoc-radio-redo
+        gnuradio:
+            forceinstalled: False
+            forcebuild: True
+            gitbranch: maint
+        gr-ettus:
+            forceinstalled: False
+            forcebuild: True
+            gitbranch: radio-redo
+
+depends:
+- uhd
+- gnuradio
+- gr-ettus
