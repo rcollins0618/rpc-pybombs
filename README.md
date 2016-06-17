@@ -1,19 +1,18 @@
-# pybombs-x310-radio-redo-test
-Custom Pybombs(2.0) Recipes
+# Custom Pybombs(2.0) Recipes
 
 ##Purpose
-This repo is currently for testing the install of the  (rfnoc-)radio-redo branches of gr-ettus (and optionally uhd), along with (the maint branch of) gnuradio to be used in conjunction with the Ettus USRP X310.
+This repo is currently for testing the install of the rfnoc branches of gr-ettus (and optionally uhd), along with (the maint branch of) gnuradio to be used in conjunction with the Ettus USRP X310.
 
 This repository will not be maintained, and should be ignored, really.
 Instead, For something that works, see the references at the bottom.
 
 
-##Recipes
+##Prefix Recipes
 | File | Description |
-| ----------------------- | ------------------------------------------------------------------------------ |
-|x310-rfnoc-devel-rpc.lwr | assumes you already have the rfnoc-devel branch of UHD installed manually      |
-|x310-radio-redo-rpc.lwr  | assumes you already have the rfnoc-radio-redo branch of UHD installed manually |
-|x310-radio-redo-all.lwr  | use this one to install all dependencies, or with a custom prefix              |
+| ----------------------- | ------------------------------------------------------------------------------
+|x310-rfnoc-devel.lwr     | assumes you already have the rfnoc-devel branch of UHD installed manually
+|x310-radio-redo.lwr      | assumes you already have the rfnoc-radio-redo branch of UHD installed manually
+|x310-radio-redo-all.lwr  | use this one to install all dependencies, or with a custom prefix
 
 
 
@@ -22,15 +21,20 @@ Instead, For something that works, see the references at the bottom.
 ```
 sudo apt install python-pip
 sudo -E pip install git+https://github.com/gnuradio/pybombs.git
-pybombs recipes add ettus https://github.com/EttusResearch/ettus-pybombs.git
 pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git
-pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
-pybombs recipes add rpc-github https://github.com/rcollins0618/pybombs-x310-radio-redo-test.git
+pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git       # optional
+pybombs recipes add ettus-pybombs https://github.com/EttusResearch/ettus-pybombs.git  # optional
+pybombs recipes add rpc-github https://github.com/rcollins0618/rpc-pybombs.git
 pybombs config makewidth 8      # or something like 1/2 of $(nproc)
 ```
-######Default Prefix (If UHD (rfnoc-radio-redo) is already installed in default (/usr/local) prefix):
+######Default Prefix (If UHD is already installed in default (/usr/local) prefix):
+If you want to use rfnoc-radio-redo branch:
 ```
-sudo pybombs prefix init /usr/local -a radio-redo -R x310-radio-redo-rpc
+sudo pybombs prefix init /usr/local -a radio-redo -R x310-radio-redo
+```
+If, instead, you want the rfnoc-devel branch:
+```
+sudo pybombs prefix init /usr/local -a radio-redo -R x310-rfnoc-devel
 ```
 ######Custom Prefix (Else, if Custom Prefix desired... (untested, experimental, probably wrong)):
 ```
